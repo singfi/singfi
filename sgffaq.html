@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SingFi - Frequently Asked Question</title>
+  <style>
+    /* BASIC STYLING */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+    .faq-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .faq-header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #333;
+    }
+    .faq-header p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #666;
+    }
+    /* TABLE OF CONTENTS */
+    .toc {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background-color: #fefefe;
+      border-radius: 4px;
+    }
+    .toc h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .toc ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .toc li {
+      margin: 0.4rem 0;
+    }
+    .toc a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+    .toc a:hover {
+      text-decoration: underline;
+    }
+    /* ACTIONS: SEARCH + BUTTONS */
+    .faq-actions {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .faq-actions input[type="text"] {
+      width: 60%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+    .faq-actions button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin: 0.25rem;
+    }
+    @media (max-width: 600px) {
+      .faq-actions input[type="text"] {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+    }
+    /* CATEGORY HEADINGS */
+    .faq-category {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #444;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.25rem;
+    }
+    /* ACCORDION */
+    .accordion-item {
+      border-bottom: 1px solid #ddd;
+    }
+    .accordion-question {
+      background-color: #fff;
+      color: #333;
+      cursor: pointer;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      border: none;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .accordion-question:hover {
+      background-color: #f1f1f1;
+    }
+    .accordion-icon {
+      margin-left: 0.5rem;
+      transition: transform 0.3s;
+    }
+    .accordion-icon.rotate {
+      transform: rotate(90deg);
+    }
+    .accordion-content {
+      padding: 0 1rem 1rem 1rem;
+      display: none;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
+    }
+    .accordion-content.show {
+      display: block;
+    }
+    /* DISCLAIMER */
+    .disclaimer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #888;
+      text-align: center;
+    }
+    a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <div class="faq-header">
+      <h1>SingFi - Frequently Asked Question</h1>
+      <p>Version 1.0 – [Last Updated: 02/02/2025]</p>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#cat1">1. Introduction & Basics</a></li>
+        <li><a href="#cat2">2. Pre-Sale & Post-Sale</a></li>
+        <li><a href="#cat3">3. The SGF Token & Tokenomics</a></li>
+        <li><a href="#cat4">4. Fees & Liquidity</a></li>
+        <li><a href="#cat5">5. Staking, Lending & Rewards</a></li>
+        <li><a href="#cat6">6. Governance & Community</a></li>
+        <li><a href="#cat7">7. Security & Compliance</a></li>
+        <li><a href="#cat8">8. Cross-Chain & Technology</a></li>
+        <li><a href="#cat9">9. Roadmap & Future</a></li>
+        <li><a href="#cat10">10. Support & Miscellaneous</a></li>
+      </ul>
+    </div>
+
+    <!-- SEARCH + EXPAND/COLLAPSE -->
+    <div class="faq-actions">
+      <input 
+        type="text" 
+        id="faqSearch" 
+        placeholder="Search questions..."
+        aria-label="Search FAQs"
+      />
+      <button id="expandAllBtn">Expand All</button>
+      <button id="collapseAllBtn">Collapse All</button>
+    </div>
+
+    <!-- ============================ FAQ CATEGORIES ========================== -->
+
+    <!-- 1. INTRODUCTION & BASICS -->
+    <div class="faq-category" id="cat1">1. Introduction & Basics</div>
+
+    <!-- Q1 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        1.1 What is SingFi?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi is a blockchain-powered financial platform that merges decentralized finance (DeFi) 
+          with regulatory compliance and ESG (Environmental, Social, Governance) principles. It offers 
+          users various services—like staking, lending, and tokenized assets—while aiming for trust, 
+          transparency, and sustainability.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        1.2 What sets SingFi apart from other DeFi platforms?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi emphasizes regulatory alignment, quantum-resistant security, and ESG finance. 
+          By combining compliance frameworks (KYC/AML), advanced AI analytics, and green finance 
+          initiatives, it offers a future-ready DeFi ecosystem that stands out from purely decentralized 
+          or unregulated projects.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        1.3 Is SingFi regulated or licensed?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi actively seeks compliance with relevant financial authorities (e.g., MAS in Singapore) 
+          and aligns with global standards like FATF. Certain jurisdictions may be restricted based on 
+          local laws. Always check your local regulations before participating.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        1.4 Who can use SingFi?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Anyone with internet access and a compatible wallet can explore SingFi’s features—subject to 
+          local laws, KYC requirements, and any regional restrictions. Retail users, SMEs, institutions, 
+          and even government bodies can benefit from its range of DeFi products and ESG-driven solutions.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2. PRE-SALE & POST-SALE -->
+    <div class="faq-category" id="cat2">2. Pre-Sale & Post-Sale</div>
+
+    <!-- Q5 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        2.1 How do I participate in the SingFi pre-sale?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Pre-sale participation involves connecting a compatible wallet (e.g., Phantom on Solana) to 
+          the SingFi pre-sale portal, completing KYC (if applicable), and sending supported currencies 
+          (e.g., USDC, USDT) to purchase SGF. Check official announcements for start/end dates, vesting 
+          schedules, and bonus offerings.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        2.2 What happens after the pre-sale ends?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          After the pre-sale, SingFi will distribute SGF tokens to participants according to any vesting 
+          or lock-up terms. The platform transitions into broader availability—like staking launches, 
+          possible exchange listings, and continued ecosystem expansions based on the roadmap.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        2.3 Will there be any bonuses or special allocations for early investors?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Often, early participants receive bonus tokens or discounted pricing. Terms vary by round 
+          and are published in official announcements. Bonus tokens may have a separate vesting schedule 
+          to prevent immediate sell-offs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        2.4 What if I missed the pre-sale? Can I still buy SGF?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. Once the tokens are listed on decentralized or centralized exchanges (subject to liquidity 
+          availability), you can purchase SGF there. Additionally, post-sale participants can stake, lend, 
+          or use SGF in any integrated DeFi services as they become available.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        2.5 Do different jurisdictions have restrictions on buying SGF?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Some regions impose limitations on token sales or require strict KYC. SingFi complies with 
+          applicable regulations and may geo-block sanctioned locations. Always consult local laws 
+          and official disclaimers to ensure eligibility.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3. THE SGF TOKEN & TOKENOMICS -->
+    <div class="faq-category" id="cat3">3. The SGF Token & Tokenomics</div>
+
+    <!-- Q10 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        3.1 What is SGF, and how is it used?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SGF is the native utility token of SingFi, used for governance voting, staking, lending, 
+          liquidity rewards, and potential fee discounts. It underpins the entire ecosystem, 
+          including cross-chain operations and ESG-related financing.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        3.2 What is the total supply, and how are tokens allocated?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi issues a total of 1,000,000,000 SGF. Key allocations include Pre-Sale, Development, 
+          Ecosystem Incentives, Liquidity Pool, Team & Advisors, Partnerships/Marketing, and an Emergency 
+          Reserve. Refer to the official White Paper for exact percentages and vesting schedules.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        3.3 Are there any ESG or green tokens separate from SGF?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes, SingFi reserves a 1-billion ESG token cap for green finance initiatives, minted only via 
+          DAO proposals for sustainability projects (like carbon credits, eco-friendly loans). This ensures 
+          accountability and alignment with the project’s environmental goals.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        3.4 Will the mint/freeze authority be revoked?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. SingFi intends to revoke mint and freeze authority for the main SGF supply to ensure 
+          decentralization and build trust among holders. ESG-specific tokens remain under DAO governance.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        3.5 Is there a vesting period for team/advisor tokens?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. Team and advisor allocations often have multi-month or multi-year cliffs and gradual unlocks 
+          to align interests with the project’s long-term success. Pre-sale tokens may also carry lock-ups.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. FEES & LIQUIDITY -->
+    <div class="faq-category" id="cat4">4. Fees & Liquidity</div>
+
+    <!-- Q15 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        4.1 What fees does SingFi charge?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi features low, transparent fees on actions like staking, lending, and cross-chain bridging. 
+          Some advanced yield strategies or tokenization services might include performance or listing fees. 
+          Users also pay gas fees on the underlying blockchain (e.g., Solana).
+        </p>
+      </div>
+    </div>
+
+    <!-- Q16 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        4.2 How does SingFi manage liquidity?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          A tiered liquidity approach locks a portion of SGF for stability. Additional liquidity unlocks 
+          may occur via governance votes or upon hitting roadmap milestones. This balanced method reduces 
+          volatility while maintaining ecosystem health.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q17 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        4.3 Will SGF be listed on exchanges?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. SingFi aims to list on reputable decentralized and possibly centralized exchanges, subject 
+          to each exchange’s listing criteria. Liquidity pools will also be available on DEXs like Raydium 
+          (on Solana) or others after bridging expansions.
+        </p>
+      </div>
+    </div>
+
+    <!-- 5. STAKING, LENDING & REWARDS -->
+    <div class="faq-category" id="cat5">5. Staking, Lending & Rewards</div>
+
+    <!-- Q18 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        5.1 How do I stake SGF?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Connect your wallet to the SingFi dashboard, select a staking pool, choose your lock-up period, 
+          and confirm the transaction. You’ll start earning rewards automatically, with details on yield 
+          rates, lock-up durations, and potential penalties for early withdrawal.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q19 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        5.2 What are the staking rewards or APYs?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          APYs vary by pool, lock-up length, and overall network demand. Some pools offer fixed rates, 
+          others use dynamic models. Rewards may include additional SGF, ESG tokens for green initiatives, 
+          or potential partner tokens if the DAO approves collaborations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q20 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        5.3 Can I borrow against my SGF?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. SingFi’s lending protocol allows you to use SGF (or other assets) as collateral to access 
+          stablecoins or crypto loans. Make sure to maintain sufficient collateral to avoid liquidations, 
+          as governed by smart contract rules.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q21 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        5.4 What is yield optimization?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi’s yield optimization uses smart contracts (or AI) to automatically move assets between 
+          high-yield pools, saving you the hassle of manual rebalancing. This can include cross-chain 
+          strategies if bridging is supported.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q22 (Super Jackpot Merged) -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        5.5 Does SingFi have any special reward programs, like a Jackpot?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. SingFi occasionally runs promotional “Super Jackpot” events where stakers or liquidity 
+          providers earn entries for grand prizes (like large SGF allocations or exclusive NFTs). 
+          The DAO or official team announcements detail each event’s rules, timing, and reward structure.
+        </p>
+      </div>
+    </div>
+
+    <!-- 6. GOVERNANCE & COMMUNITY -->
+    <div class="faq-category" id="cat6">6. Governance & Community</div>
+
+    <!-- Q23 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        6.1 How does SingFi’s DAO governance work?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SGF token holders can propose, discuss, and vote on changes—such as protocol upgrades, budget 
+          allocations, and ESG token issuance. Proposals that meet a set quorum and pass a majority vote 
+          are implemented through on-chain smart contracts, ensuring transparency.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q24 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        6.2 Who can participate in governance?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Any SGF holder can vote or delegate votes, though some proposals may require a minimum stake 
+          to submit. This ensures active and significant stakeholders guide platform decisions. 
+          Future expansions may include AI-driven proposals or zero-knowledge private voting.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q25 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        6.3 How can I stay updated on community discussions?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Join SingFi’s official Telegram, X (formerly Twitter), or Discord channels for real-time 
+          updates. The governance forum (or DAO portal) also features proposals, polls, and in-depth 
+          discussions on technical, financial, and ESG topics.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q26 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        6.4 Are governance votes transparent?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. Voting records and outcomes are on-chain. Some advanced zero-knowledge features may 
+          allow private voting tallies while still verifying results cryptographically.
+        </p>
+      </div>
+    </div>
+
+    <!-- 7. SECURITY & COMPLIANCE -->
+    <div class="faq-category" id="cat7">7. Security & Compliance</div>
+
+    <!-- Q27 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        7.1 What security measures does SingFi implement?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi employs third-party smart contract audits, multi-signature wallets for treasury functions, 
+          hardware security modules (HSMs), continuous runtime monitoring, and an emergency pause mechanism 
+          to protect user funds. AI-driven anomaly detection further helps flag suspicious activities.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q28 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        7.2 Does SingFi require KYC/AML verification?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          For certain transactions (e.g., large token purchases, lending above a threshold), SingFi enforces 
+          KYC/AML checks aligned with FATF and other international standards. This ensures compliance and 
+          helps block illicit activities.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q29 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        7.3 Is SingFi quantum-resistant already?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi is not yet fully quantum-resistant. However, the 5–10 year roadmap includes phased adoption 
+          of post-quantum cryptographic protocols. By Year 7–10, SingFi aims for a robust quantum-safe 
+          environment, subject to DAO governance and available standards.
+        </p>
+      </div>
+    </div>
+
+    <!-- 8. CROSS-CHAIN & TECHNOLOGY -->
+    <div class="faq-category" id="cat8">8. Cross-Chain & Technology</div>
+
+    <!-- Q30 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        8.1 Which blockchains does SingFi support, and can I bridge assets?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Initially, SingFi is built on Solana for its high throughput and low fees. Over time, bridging 
+          solutions and expansions to Ethereum, BNB Chain, Polygon, and others will be introduced. Users 
+          can move assets seamlessly between ecosystems once bridging is live.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q31 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        8.2 How does SingFi handle tokenized real-world assets?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Real-world assets like real estate or commodities can be fractionalized and tokenized within 
+          SingFi’s ecosystem. Partnerships with reputable custodians and third-party verifiers ensure 
+          asset legitimacy. The DAO may also approve specific ESG-related tokenization (e.g., carbon credits).
+        </p>
+      </div>
+    </div>
+
+    <!-- Q32 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        8.3 How does SingFi maintain fast transactions if usage grows?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          SingFi leverages Solana’s high TPS and can adopt Layer-2 or parallelized architectures for other 
+          chains as traffic increases. Techniques like sharding or zero-knowledge rollups (zk-rollups) 
+          may be integrated if the DAO deems them beneficial.
+        </p>
+      </div>
+    </div>
+
+    <!-- 9. ROADMAP & FUTURE -->
+    <div class="faq-category" id="cat9">9. Roadmap & Future</div>
+
+    <!-- Q33 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        9.1 What are SingFi’s main roadmap phases?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Broadly, SingFi splits development over a 10-year plan:  
+          <br><strong>Years 1–2:</strong> Launch, compliance setup, staking & basic DeFi.  
+          <br><strong>Years 3–4:</strong> Cross-chain bridges, expanded lending, green finance products.  
+          <br><strong>Years 5–6:</strong> AI-driven governance, advanced tokenization, global partnerships.  
+          <br><strong>Years 7–10:</strong> Quantum-resistance, dedicated chain or L2 solution, large-scale 
+          institutional integration.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q34 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        9.2 Will SingFi build its own blockchain?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Possibly. If usage and governance votes support it, SingFi may deploy a dedicated chain or an 
+          advanced Layer-2 solution optimized for privacy, quantum safety, and ESG tracking. This 
+          decision depends on long-term community consensus and evolving tech standards.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q35 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        9.3 How does SingFi plan to integrate AI further?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Future updates may include AI-based yield optimizers, automated treasury management proposals, 
+          and real-time ESG scoring or compliance checks. The DAO retains ultimate decision-making power, 
+          but AI can offer data-driven insights to streamline processes.
+        </p>
+      </div>
+    </div>
+
+    <!-- 10. SUPPORT & MISCELLANEOUS -->
+    <div class="faq-category" id="cat10">10. Support & Miscellaneous</div>
+
+    <!-- Q36 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        10.1 Where can I find help or report issues?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          For general assistance, visit the official SingFi website or community channels (Telegram, X). 
+          For urgent matters, email <strong>support@singfi.io</strong>. You can also check the Help Center 
+          or open a support ticket if available.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q37 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        10.2 How do I connect my wallet to SingFi?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Simply click “Connect Wallet” on the dApp, choose a compatible wallet (Phantom, Solflare, etc.), 
+          and approve the connection. Mobile users can often integrate via in-app browsers or wallet 
+          connect features.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q38 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        10.3 Are there limitations for certain countries?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. Due to varying regulations, some countries are restricted from token purchases or certain 
+          DeFi activities. SingFi enforces geo-blocks or denies KYC for sanctioned regions. Always confirm 
+          your local laws before using the platform.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q39 -->
+    <div class="accordion-item">
+      <button class="accordion-question">
+        10.4 Can institutions integrate with SingFi directly?
+        <span class="accordion-icon">&#9654;</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Yes. Enterprises and financial institutions can explore white-label solutions, licensing 
+          SingFi’s compliance modules, or leveraging the platform’s API/SDK. Dedicated account managers 
+          offer customized support for large-scale integrations.
+        </p>
+      </div>
+    </div>
+
+    <!-- END OF FAQ -->
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <p>
+        <em>
+          Disclaimer: This FAQ is for informational purposes only and does not constitute financial, 
+          legal, or tax advice. Consult professionals before making investment decisions. Always review 
+          the official White Paper, Terms & Conditions, and regulatory disclosures on 
+          <a href="https://www.singfi.io" target="_blank">www.singfi.io</a> for the most accurate details.
+        </em>
+      </p>
+    </div>
+  </div><!-- End .faq-container -->
+
+  <script>
+    // ACCORDION TOGGLE
+    const questions = document.querySelectorAll('.accordion-question');
+    questions.forEach(question => {
+      question.addEventListener('click', () => {
+        const content = question.nextElementSibling;
+        content.classList.toggle('show');
+        const icon = question.querySelector('.accordion-icon');
+        if (icon) {
+          icon.classList.toggle('rotate');
+        }
+      });
+    });
+
+    // EXPAND / COLLAPSE ALL
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    const collapseAllBtn = document.getElementById('collapseAllBtn');
+    const accordionIcons = document.querySelectorAll('.accordion-icon');
+    const accordionContents = document.querySelectorAll('.accordion-content');
+
+    expandAllBtn.addEventListener('click', () => {
+      accordionContents.forEach(c => c.classList.add('show'));
+      accordionIcons.forEach(icon => icon.classList.add('rotate'));
+    });
+
+    collapseAllBtn.addEventListener('click', () => {
+      accordionContents.forEach(c => c.classList.remove('show'));
+      accordionIcons.forEach(icon => icon.classList.remove('rotate'));
+    });
+
+    // SEARCH FUNCTION
+    const searchInput = document.getElementById('faqSearch');
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    searchInput.addEventListener('keyup', function() {
+      const query = searchInput.value.toLowerCase().trim();
+      accordionItems.forEach(item => {
+        const questionBtn = item.querySelector('.accordion-question');
+        const questionText = questionBtn.textContent.toLowerCase();
+        const contentText = item.querySelector('.accordion-content').textContent.toLowerCase();
+        const combinedText = questionText + " " + contentText;
+        item.style.display = combinedText.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
